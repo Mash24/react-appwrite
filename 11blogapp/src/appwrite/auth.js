@@ -6,7 +6,17 @@ export class AuthService {
     account;
 
     constructor() {
+        console.log("Appwrite URL:", conf.appwriteUrl); // Log the Appwrite URL
+        console.log("Appwrite Project ID:", conf.appwriteProjectId); // Log the Appwrite Project ID
+        console.log("Appwrite URL:", conf.appwriteUrl); // Log the Appwrite URL
+        console.log("Appwrite Project ID:", conf.appwriteProjectId); // Log the Appwrite Project ID
+        console.log("Appwrite Collection ID:", conf.appwriteCollectionId); // Log the Appwrite Collection ID
+        console.log("Appwrite API Key:", conf.appwriteApiKey); // Log the Appwrite API Key
+        console.log("Appwrite Bucket ID:", conf.appwriteBucketId); // Log the Appwrite Bucket ID
+        console.log("Appwrite Database ID:", conf.appwriteDatabaseId); // Log the Appwrite Database ID
         this.client // Use 'this' keyword before accessing properties or methods of the instance.
+
+
             .setEndpoint(conf.appwriteUrl) // Set the Appwrite endpoint URL
             .setProject(conf.appwriteProjectId); // Set your project ID
 

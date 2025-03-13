@@ -8,7 +8,7 @@ import store from './Store/store.js'
 
 
 import Home from './Pages/Home.jsx'
-import Login from './Pages/Login.jsx'
+import LoginPage from './pages/LoginPage.jsx' // Updated import to LoginPage
 import Protected from './Components/AuthLayout.jsx'
 import Signup from './pages/Signup.jsx'
 import AllPosts from './pages/AllPosts.jsx'
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         path: '/login',
         element: (
           <Protected authentication = {false}>
-            <Login />
+            <LoginPage /> // Updated to use LoginPage
           </Protected>
         )
       },

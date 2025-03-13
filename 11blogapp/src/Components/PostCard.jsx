@@ -1,6 +1,8 @@
-import React from 'react'
-import { Link, link} from "react-router-dom"
-import appwriteService from "../appwrite/config.js"
+import React, { useState, useEffect } from 'react';
+import {useParams, useNavigate} from "react-router-dom";
+import appwriteService from "../appwrite/config"
+import Container from '../Components/Container/Container'; 
+import PostForm from '../Components/post-form/PostForm';
 
 function PostCard({
     $id, title, featuredImage

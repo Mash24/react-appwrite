@@ -1,22 +1,44 @@
-import { useState } from 'react'
-import Footer from './Footer/Footer'  // Importing Footer component
+import { useState, useEffect } from 'react';
+import LoginPage from './pages/LoginPage'; // Importing the LoginPage component
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
 import './App.css'
 import { Outlet } from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { login as authLogin, logout } from "./Store/authSlice";
+import Header from "./Components/Header/Header"
+import Footer from "./Footer/Footer"
+import authService from './appwrite/auth'
+import Logo from "./Components/Logo"
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
-  return (
-    <>
-      <div>
-        <main>
-          <Outlet/>
-        </main>
+    useEffect(() => {
+        authService
+            .getCurrentUser()
+            .then((userData) => {
+                if (userData) dispatch(authLogin({ userData }));
+                else dispatch(logout());
+            })
+            .finally(() => setLoading(false));
+    }, [dispatch]);
+
+    return !loading ? (
+      <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
+          <div className="w-full block">
+              <Header />
+              <main>
+                  <Outlet />
+              </main>
+          </div>
+          <div className="w-full block">
+              <Footer />
+          </div>
       </div>
-      <h1 className="text-3xl font-bold text-center mt-5 bg-slate-900 text-white p-5 rounded-md border-solid border-4 border-blue-600 hover:bg-green-700 transition-all duration-300 ease-in-out cursor-pointer" >Youtube Blog</h1>
-      <Footer />
-    </>
-  )
+  ) : null;
 }
 
 export default App
